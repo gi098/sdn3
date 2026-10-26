@@ -6,11 +6,14 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Eye, EyeOff } from "lucide-react"
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [authError, setAuthError] = useState<string | null>(null)
@@ -137,18 +140,30 @@ export default function RegisterPage() {
 
             <div className="space-y-1.5">
               <Label htmlFor="register-password">Password</Label>
-              <Input
-                id="register-password"
-                data-testid="register-password"
-                type="password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value)
-                  if (authError) setAuthError(null)
-                  if (successMessage) setSuccessMessage(null)
-                }}
-                placeholder="••••••••"
-              />
+              <div className="relative">
+                <Input
+                  id="register-password"
+                  data-testid="register-password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                    if (authError) setAuthError(null)
+                    if (successMessage) setSuccessMessage(null)
+                  }}
+                  placeholder="••••••••"
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#495B7D] hover:text-[#02122F] cursor-pointer"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
               {passwordError && (
                 <p data-testid="error-password" className="text-xs text-red-500 font-medium">
                   {passwordError}
@@ -158,18 +173,30 @@ export default function RegisterPage() {
 
             <div className="space-y-1.5">
               <Label htmlFor="register-confirm-password">Confirm Password</Label>
-              <Input
-                id="register-confirm-password"
-                data-testid="register-confirm-password"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => {
-                  setConfirmPassword(e.target.value)
-                  if (authError) setAuthError(null)
-                  if (successMessage) setSuccessMessage(null)
-                }}
-                placeholder="••••••••"
-              />
+              <div className="relative">
+                <Input
+                  id="register-confirm-password"
+                  data-testid="register-confirm-password"
+                  type={showConfirmPassword ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value)
+                    if (authError) setAuthError(null)
+                    if (successMessage) setSuccessMessage(null)
+                  }}
+                  placeholder="••••••••"
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#495B7D] hover:text-[#02122F] cursor-pointer"
+                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                >
+                  {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
               {confirmPasswordError && (
                 <p data-testid="error-confirm-password" className="text-xs text-red-500 font-medium">
                   {confirmPasswordError}
