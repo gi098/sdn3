@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Eye, EyeOff } from "lucide-react"
 
 export default function RegisterPage() {
+  const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
@@ -64,6 +65,7 @@ export default function RegisterPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          name: name.trim(),
           email: email.trim(),
           password,
           confirmPassword,
@@ -75,6 +77,7 @@ export default function RegisterPage() {
         setAuthError(data.error || "Registration failed")
       } else {
         setSuccessMessage("Registration successful")
+        setName("")
         setEmail("")
         setPassword("")
         setConfirmPassword("")
@@ -116,6 +119,22 @@ export default function RegisterPage() {
                 {authError}
               </div>
             )}
+
+            <div className="space-y-1.5">
+              <Label htmlFor="register-name">Full Name</Label>
+              <Input
+                id="register-name"
+                data-testid="register-name"
+                type="text"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value)
+                  if (authError) setAuthError(null)
+                  if (successMessage) setSuccessMessage(null)
+                }}
+                placeholder="Nguyen Van A"
+              />
+            </div>
 
             <div className="space-y-1.5">
               <Label htmlFor="register-email">Email</Label>
