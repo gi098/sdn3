@@ -86,10 +86,10 @@ export default function RegisterPage() {
 
   return (
     <div className="max-w-md mx-auto px-4 py-12">
-      <Card className="shadow-lg border-slate-200">
+      <Card className="shadow-lg border-[#8BA3C5]/40 bg-white">
         <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-2xl font-bold text-[#02122F]">Create an account</CardTitle>
+          <CardDescription className="text-[#495B7D]">
             Join ExpenseTrail to start managing your personal expenses
           </CardDescription>
         </CardHeader>
@@ -187,9 +187,9 @@ export default function RegisterPage() {
             >
               {submitting ? "Registering..." : "Register"}
             </Button>
-            <p className="text-xs text-center text-slate-500">
+            <p className="text-xs text-center text-[#495B7D]">
               Already have an account?{" "}
-              <Link href="/login" className="text-blue-600 hover:underline font-medium">
+              <Link href="/login" className="text-[#23354D] hover:text-[#02122F] hover:underline font-semibold">
                 Sign in
               </Link>
             </p>

@@ -137,9 +137,9 @@ export default function ExpensesPage() {
         {/* Left Column: Add Expense Form & Summary */}
         <div className="xl:col-span-4 space-y-6">
           {/* Add Expense Form Card */}
-          <Card className="shadow-sm border-slate-200">
+          <Card className="shadow-sm border-[#8BA3C5]/40 bg-white">
             <CardHeader className="pb-4">
-              <CardTitle className="text-xl font-bold">Add Expense</CardTitle>
+              <CardTitle className="text-xl font-bold text-[#02122F]">Add Expense</CardTitle>
             </CardHeader>
             <CardContent>
               <form
@@ -223,7 +223,7 @@ export default function ExpensesPage() {
                       if (formError) setFormError(null)
                       if (formSuccess) setFormSuccess(null)
                     }}
-                    className="flex h-9 w-full rounded-md border border-slate-300 bg-white px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="flex h-9 w-full rounded-md border border-[#8BA3C5]/50 bg-white px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-[#23354D]"
                   >
                     <option value="">Choose category</option>
                     {CATEGORIES.map((cat) => (
@@ -286,27 +286,27 @@ export default function ExpensesPage() {
           </Card>
 
           {/* Spending Summary Card */}
-          <Card className="shadow-sm border-slate-200">
+          <Card className="shadow-sm border-[#8BA3C5]/40 bg-white">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-bold">Spending Summary</CardTitle>
+              <CardTitle className="text-lg font-bold text-[#02122F]">Spending Summary</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-3 gap-3 text-center">
-                <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
-                  <p className="text-xs text-slate-500 font-medium">Total Items</p>
-                  <p data-testid="expense-count" className="text-lg font-bold text-slate-800">
+                <div className="bg-[#F0ECDD]/50 p-2.5 rounded-lg border border-[#8BA3C5]/30">
+                  <p className="text-xs text-[#495B7D] font-medium">Total Items</p>
+                  <p data-testid="expense-count" className="text-lg font-bold text-[#02122F]">
                     {summary.count}
                   </p>
                 </div>
-                <div className="bg-amber-50 p-2.5 rounded-lg border border-amber-100">
+                <div className="bg-amber-50/80 p-2.5 rounded-lg border border-amber-200">
                   <p className="text-xs text-amber-700 font-medium">Starred</p>
                   <p data-testid="starred-count" className="text-lg font-bold text-amber-800">
                     {summary.starredCount}
                   </p>
                 </div>
-                <div className="bg-blue-50 p-2.5 rounded-lg border border-blue-100">
-                  <p className="text-xs text-blue-700 font-medium">Total Spent</p>
-                  <p data-testid="total-amount" className="text-lg font-bold text-blue-800">
+                <div className="bg-[#F0ECDD] p-2.5 rounded-lg border border-[#8BA3C5]/50">
+                  <p className="text-xs text-[#23354D] font-medium">Total Spent</p>
+                  <p data-testid="total-amount" className="text-lg font-bold text-[#02122F]">
                     {summary.totalAmount.toFixed(2)}
                   </p>
                 </div>
@@ -314,32 +314,32 @@ export default function ExpensesPage() {
 
               {/* Category Breakdown */}
               <div className="pt-2">
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                <p className="text-xs font-semibold text-[#495B7D] uppercase tracking-wider mb-2">
                   Category Breakdown
                 </p>
                 <div data-testid="category-breakdown" className="space-y-2">
                   {summary.breakdown.length === 0 ? (
-                    <p className="text-xs text-slate-400 italic">No category data to display</p>
+                    <p className="text-xs text-[#495B7D] italic">No category data to display</p>
                   ) : (
                     summary.breakdown.map((item) => (
                       <div
                         key={item.category}
                         data-testid="breakdown-row"
-                        className="flex items-center justify-between text-sm py-1.5 px-3 bg-slate-50 rounded-md border border-slate-100"
+                        className="flex items-center justify-between text-sm py-1.5 px-3 bg-[#F0ECDD]/30 rounded-md border border-[#8BA3C5]/20"
                       >
-                        <span data-testid="breakdown-name" className="font-medium text-slate-700">
+                        <span data-testid="breakdown-name" className="font-medium text-[#02122F]">
                           {item.category}
                         </span>
                         <div className="flex items-center space-x-3">
                           <span
                             data-testid="breakdown-count"
-                            className="text-xs bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full"
+                            className="text-xs bg-[#8BA3C5]/25 text-[#23354D] font-semibold px-2 py-0.5 rounded-full"
                           >
                             {item.count}
                           </span>
                           <span
                             data-testid="breakdown-total"
-                            className="font-semibold text-slate-900"
+                            className="font-semibold text-[#02122F]"
                           >
                             {item.total.toFixed(2)}
                           </span>
@@ -356,19 +356,19 @@ export default function ExpensesPage() {
         {/* Right Column: Filters & Expense List */}
         <div className="xl:col-span-8 space-y-6">
           {/* Filters Card */}
-          <Card className="shadow-sm border-slate-200">
+          <Card className="shadow-sm border-[#8BA3C5]/40 bg-white">
             <CardContent className="p-4">
               <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
                 {/* Search */}
                 <div className="relative flex-1 w-full">
-                  <Search className="w-4 h-4 absolute left-3 top-2.5 text-slate-400" />
+                  <Search className="w-4 h-4 absolute left-3 top-2.5 text-[#495B7D]" />
                   <Input
                     data-testid="search-input"
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search title or note..."
-                    className="pl-9"
+                    className="pl-9 border-[#8BA3C5]/50 focus-visible:ring-[#23354D]"
                   />
                 </div>
 
@@ -378,7 +378,7 @@ export default function ExpensesPage() {
                     data-testid="filter-category"
                     value={categoryFilter}
                     onChange={(e) => setCategoryFilter(e.target.value)}
-                    className="flex h-9 w-full rounded-md border border-slate-300 bg-white px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="flex h-9 w-full rounded-md border border-[#8BA3C5]/50 bg-white px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-[#23354D]"
                   >
                     <option value="">All</option>
                     {CATEGORIES.map((cat) => (
@@ -397,9 +397,9 @@ export default function ExpensesPage() {
                     type="checkbox"
                     checked={starredFilter}
                     onChange={(e) => setStarredFilter(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer"
+                    className="w-4 h-4 text-[#23354D] rounded border-[#8BA3C5] focus:ring-[#23354D] cursor-pointer"
                   />
-                  <Label htmlFor="filter-starred" className="text-sm cursor-pointer select-none">
+                  <Label htmlFor="filter-starred" className="text-sm cursor-pointer select-none text-[#02122F]">
                     Starred only
                   </Label>
                 </div>
@@ -424,7 +424,7 @@ export default function ExpensesPage() {
             {expenses.length === 0 ? (
               <div
                 data-testid="expenses-empty"
-                className="p-12 text-center bg-white rounded-xl border border-slate-200 text-slate-500 shadow-sm"
+                className="p-12 text-center bg-white rounded-xl border border-[#8BA3C5]/40 text-[#495B7D] shadow-sm"
               >
                 No expenses found
               </div>
@@ -433,7 +433,7 @@ export default function ExpensesPage() {
                 <div
                   key={expense.id}
                   data-testid="expense-item"
-                  className="flex items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-slate-300 transition-all"
+                  className="flex items-center justify-between p-4 bg-white rounded-xl border border-[#8BA3C5]/30 shadow-sm hover:border-[#8BA3C5] transition-all"
                 >
                   <div className="flex items-start space-x-3.5">
                     <button
@@ -444,7 +444,7 @@ export default function ExpensesPage() {
                       className={`p-1.5 rounded-full transition-colors cursor-pointer ${
                         expense.starred
                           ? "text-amber-500 hover:text-amber-600 bg-amber-50"
-                          : "text-slate-300 hover:text-slate-500 hover:bg-slate-100"
+                          : "text-slate-300 hover:text-[#495B7D] hover:bg-[#F0ECDD]/50"
                       }`}
                     >
                       <Star
@@ -456,23 +456,23 @@ export default function ExpensesPage() {
                       <div className="flex items-center space-x-2">
                         <span
                           data-testid="expense-title"
-                          className="font-semibold text-slate-900 text-base"
+                          className="font-semibold text-[#02122F] text-base"
                         >
                           {expense.title}
                         </span>
                         <span
                           data-testid="expense-category"
-                          className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200"
+                          className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#F0ECDD] text-[#23354D] border border-[#8BA3C5]/40"
                         >
                           {expense.category}
                         </span>
                       </div>
-                      <div className="flex items-center space-x-3 mt-1 text-xs text-slate-500">
+                      <div className="flex items-center space-x-3 mt-1 text-xs text-[#495B7D]">
                         <span data-testid="expense-date">{expense.spentAt}</span>
                         {expense.note && (
                           <>
                             <span>•</span>
-                            <span className="italic text-slate-600">{expense.note}</span>
+                            <span className="italic text-[#495B7D]">{expense.note}</span>
                           </>
                         )}
                       </div>
@@ -482,7 +482,7 @@ export default function ExpensesPage() {
                   <div className="flex items-center space-x-4">
                     <span
                       data-testid="expense-amount"
-                      className="font-bold text-slate-900 text-lg tabular-nums"
+                      className="font-bold text-[#02122F] text-lg tabular-nums"
                     >
                       {Number(expense.amount).toFixed(2)}
                     </span>
