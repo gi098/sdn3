@@ -1,20 +1,19 @@
 import { NextResponse } from "next/server"
+import { prisma } from "@/lib/prisma"
 
 export async function GET() {
-  const keys = Object.keys(process.env).filter(
-    (k) =>
-      k.includes("DATA") ||
-      k.includes("URL") ||
-      k.includes("POSTGRES") ||
-      k.includes("PRISMA") ||
-      k.includes("SUPABASE") ||
-      k.includes("STORAGE") ||
-      k.includes("SECRET")
-  )
-  return NextResponse.json({
-    databaseUrlDefined: !!process.env.DATABASE_URL,
-    directUrlDefined: !!process.env.DIRECT_URL,
-    authSecretDefined: !!process.env.AUTH_SECRET,
-    matchingKeys: keys,
-  })
+  try {
+    const userCount = await prisma.user.count()
+    return NextResponse.json({
+      status: "success",
+      userCount,
+      databaseUrlDefined: !!process.env.DATABASE_URL,
+    })
+  } catch (error: any) {
+    return NextResponse.json({
+      status: "error",
+      message: error?.message || String(error),
+      code: error?.code,
+    })
+  }
 }
